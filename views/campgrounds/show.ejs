@@ -18,6 +18,13 @@
                     <h4 class = "float-right">$9.99</h4>
                     <h4 class="card-title"><%=  campground.name%></h4>
                     <p><%=campground.description%></p>
+                    <p><em>submitted by <strong><%= campground.author.username%></strong></em></p>
+                    <% if(currentUser && campground.author.id.equals(currentUser._id)){%>
+                        <a class = "btn btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+                        <form class = "delete-form" action = "/campgrounds/<%= campground._id %>?_method=delete" method="POST">
+                            <button class = "btn btn-danger">Delete</button>
+                        </form>
+                    <% }%>
                 </div>
             </div>
             <div class = "card card-body bg-light">
@@ -33,6 +40,15 @@
                             <p>
                                 <%= comment.text%>
                             </p>
+                            <% if(currentUser && comment.author.id.equals(currentUser._id)){%>
+                                <a class = "btn btn-sm btn-warning" 
+                                href="/campgrounds/<%= campground._id %>/comments/<%=comment._id%>/edit">
+                                    Edit
+                                </a>
+                                <form class = "delete-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=Delete" method = "POST">
+                                    <button class ="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                                <% } %>
                         </div>
                     </div>
                 <% }) %>

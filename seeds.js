@@ -46,9 +46,9 @@ function seedDB(){
                             } else{
                             campground.comments.push(comment._id);
                             campground.save();
-                            console.log("created new comment")
+                            console.log("created new comment");
                         }
-                    })
+                    });
                 }
             });
         });

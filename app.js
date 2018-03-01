@@ -7,7 +7,8 @@ var express         = require("express"),
     Comment         = require("./models/comment"),
     passport        =require("passport"),
     LocalStrategy   = require("passport-local"),
-    User            = require("./models/user");
+    User            = require("./models/user"),
+    methodOverride  = require("method-override");
     
 var commentRoutes   = require("./routes/comments"),
     campgroundRoutes= require("./routes/campgrounds"),
@@ -19,10 +20,11 @@ var commentRoutes   = require("./routes/comments"),
     //CREATE DATABASE yelp_camp
     
     
-mongoose.connect("mongodb://localhost/yelp_campv8");
+mongoose.connect("mongodb://localhost/yelp_campv10");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 
 //seedDB(); //seed the database
 
